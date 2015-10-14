@@ -1,0 +1,25 @@
+a span {
+  font-family: 'Comic Sans MS',Cursive;
+  font-style: italic;
+}
+
+#name-and-slogan #site-slogan {
+  background-color: #000000;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+}
+
+#page #header {
+  background-color: #13f5bd;
+}
+
+#header .section {
+  color: #eb00eb;
+}
+
+#main-wrapper #main {
+  background-color: #00f2fa;
+}
+
