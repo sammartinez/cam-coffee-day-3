@@ -15,16 +15,18 @@ function groceries_menu() {
 function display_groceries() {
   $grocery_list = set_groceries();
   $output = '';
-
+  $total_cost = 0;
   foreach($grocery_list as $item) {
+    $cost = $item['price'] * $item['quantity'];
+    $total_cost += $cost;
     $output .= $item['item'] . '
     <ul>
       <li>Price: $' . $item['price'] . '</li>
       <li>Quantity: ' . $item['quantity'] . '</li>
-      <li>Total Cost: $' . $item['price'] * $item['quantity'] . '</li>
+      <li>Total Cost: $' . $cost . '</li>
     </ul><br>';
   }
-
+  $output .= '<p>Overall Cost: $' . $total_cost .'</p>';
   return $output;
 }
 
@@ -45,6 +47,12 @@ function set_groceries() {
     'item' => 'Tecate',
     'price' => 11.99,
     'quantity' => 3,
+  );
+
+  $my_groceries['Chicken'] = array(
+    'item' => 'Foster Farms Chicken',
+    'price' => 2.99,
+    'quantity' => 11,
   );
 
   return $my_groceries;
