@@ -1,0 +1,5 @@
+name = Pet
+description = list things out about my pet
+package = My First Modules
+core = 7.x
+files[] = pet.module

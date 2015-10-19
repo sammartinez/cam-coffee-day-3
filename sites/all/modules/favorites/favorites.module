@@ -1,0 +1,51 @@
+<?php
+
+function favorites_menu() {
+  $items = array();
+  $items['movies'] = array(
+    'title' => "Favorite Movies",
+    'page callback' => 'display_movies',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['books'] = array(
+    'title' => "Favorite Books",
+    'page callback' => 'display_books',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['songs'] = array(
+    'title' => "Favorite Songs",
+    'page callback' => 'display_songs',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+function display_movies() {
+  return '
+    <ul>
+      <li>The Shawshank Redemption</li>
+      <li>Bubble Boy</li>
+      <li>Star Wars: The Force Awakens</li>
+    </ul>';
+}
+
+function display_books() {
+  return '
+    <ul>
+      <li>Different Seasons by Stephen King</li>
+      <li>Harry Potter Series by J.K. Rowling</li>
+      <li>1984 by George Orwell</li>
+    </ul>';
+}
+
+function display_songs() {
+  return '
+    <ul>
+      <li>Bohemain Rhapsody by Queen</li>
+      <li>Stairway to Heaven by Led Zepplin</li>
+      <li>Free Bird by Lynyrd Skynyrd</li>
+    </ul>';
+}
