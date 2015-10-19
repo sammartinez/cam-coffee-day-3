@@ -1,0 +1,51 @@
+<?php
+
+function groceries_menu() {
+  $items = array();
+  $items['groceries'] = array(
+    'title' => "Groceries",
+    'page callback' => 'display_groceries',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+function display_groceries() {
+  $grocery_list = set_groceries();
+  $output = '';
+
+  foreach($grocery_list as $item) {
+    $output .= $item['item'] . '
+    <ul>
+      <li>Price: $' . $item['price'] . '</li>
+      <li>Quantity: ' . $item['quantity'] . '</li>
+      <li>Total Cost: $' . $item['price'] * $item['quantity'] . '</li>
+    </ul><br>';
+  }
+
+  return $output;
+}
+
+
+function set_groceries() {
+  $my_groceries['eggs'] = array(
+    'item' => 'Dozen Eggs',
+    'price' => 1.99,
+    'quantity' => 2,
+  );
+  $my_groceries['meat'] = array(
+    'item' => 'Steak',
+    'price' => 4.99,
+    'quantity' => 1,
+  );
+
+  $my_groceries['beer'] = array(
+    'item' => 'Tecate',
+    'price' => 11.99,
+    'quantity' => 3,
+  );
+
+  return $my_groceries;
+}
