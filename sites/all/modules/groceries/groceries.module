@@ -16,6 +16,7 @@ function display_groceries() {
   $grocery_list = set_groceries();
   $output = '';
   $total_cost = 0;
+  
   foreach($grocery_list as $item) {
     $cost = $item['price'] * $item['quantity'];
     $total_cost += $cost;
