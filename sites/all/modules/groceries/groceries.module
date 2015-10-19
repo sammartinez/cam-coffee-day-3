@@ -49,7 +49,7 @@ function set_groceries() {
     'quantity' => 3,
   );
 
-  $my_groceries['Chicken'] = array(
+  $my_groceries['chicken'] = array(
     'item' => 'Foster Farms Chicken',
     'price' => 2.99,
     'quantity' => 11,

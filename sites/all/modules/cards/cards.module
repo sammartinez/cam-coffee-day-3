@@ -1,0 +1,38 @@
+<?php
+
+function cards_menu() {
+  $items = array();
+  $items['cards/matt'] = array(
+    'title' => "Matthew",
+    'page callback' => 'display_matt',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  $items['cards/brooke'] = array(
+    'title' => "Brooke",
+    'page callback' => 'display_brooke',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  $items['cards/claire'] = array(
+    'title' => "Claire",
+    'page callback' => 'display_claire',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+function display_matt() {
+  return '<p>Hey Matt! You owe me money!</p>';
+}
+
+function display_brooke() {
+  return '<p>Hey Brooke! How are things?</p>';
+}
+
+function display_claire() {
+  return '<p>Hey Claire..</p> ';
+}
