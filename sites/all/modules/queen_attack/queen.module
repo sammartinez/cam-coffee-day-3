@@ -1,0 +1,102 @@
+<?php
+
+//Creates menu link/page to for piece coordinate input form.
+function queen_menu() {
+    $items = array();
+    $items['queen_attack'] = array(
+        'title' => 'Queen Attack',
+        'type' => MENU_NORMAL_ITEM,
+        'access callback' => TRUE,
+        'page callback' => 'drupal_get_form', //Built-in function for retrieving form.
+        'page arguments' => array('queen_form'), //Specifies function below that contains form.
+    );
+    //Creates page for outputting result
+    $items['queen_success_page'] = array(
+        'title' => 'The Answer',
+        'type' => MENU_CALLBACK, //Makes menu link invisible
+        'access callback' => TRUE,
+        'page callback' => 'queen_success',
+    );
+    return $items;
+}
+
+function queen_form() {
+    $form = array();
+    //In form select menus, value is what displays in dropdown.
+    $options_x = array(
+        1 => t('a'),
+        2 => t('b'),
+        3 => t('c'),
+        4 => t('d'),
+        5 => t('e'),
+        6 => t('f'),
+        7 => t('g'),
+        8 => t('h'),
+    );
+
+    $options_y = array(
+        1 => t('1'),
+        2 => t('2'),
+        3 => t('3'),
+        4 => t('4'),
+        5 => t('5'),
+        6 => t('6'),
+        7 => t('7'),
+        8 => t('8'),
+    );
+
+    $form['player_x'] = array(
+        '#title' => 'Player X Coordinate',
+        '#type' => 'select',
+        '#description' => t('Select your starting X coordinate'),
+        '#options' => $options_x,
+    );
+    $form['player_y'] = array(
+        '#title' => 'Player Y Coordinate',
+        '#type' => 'select',
+        '#description' => t('Select your starting Y coordinate'),
+        '#options' => $options_y,
+    );
+    $form['queen_x'] = array(
+        '#title' => 'Queen X Coordinate',
+        '#type' => 'select',
+        '#description' => t('Select your Queen X coordinate'),
+        '#options' => $options_x,
+    );
+    $form['queen_y'] = array(
+        '#title' => 'Queen Y Coordinate',
+        '#type' => 'select',
+        '#description' => t('Select your Queen Y coordinate'),
+        '#options' => $options_y,
+    );
+    $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' => 'Check!',
+    );
+
+    return $form;
+}
+
+function queen_form_submit($form, &$form_state) {
+    $player_x = $form_state['values']['player_x'];
+    $player_y = $form_state['values']['player_y'];
+    $queen_x = $form_state['values']['queen_x'];
+    $queen_y = $form_state['values']['queen_y'];
+
+    /*If either the x or the y value for both pieces are the same, then the queen can attack horizontally.*/
+    if($player_x === $queen_x || $player_y === $queen_y) {
+        $_SESSION['result'] = '<p>Watch out adventurer, the Blood Queen is coming for you!</p>';
+    } elseif(abs($player_x - $queen_x) === abs($player_y - $queen_y)) {
+        /*If the difference between the x coordinates for both pieces is the same as the difference between the y coordinates for both pieces, then they are diagonal.*/
+        $_SESSION['result'] = '<p>Watch out adventurer, the Blood Queen is coming for you.  Diagonally!!!!</p>';
+    } else {
+        $_SESSION['result'] = '<p>Gods be praised, you live to fight another day.  Adventurer!</p>';
+    }
+    /* On form submit, redirects to specified page, which then calls the function to display the results
+    that have been passed in $_SESSION variables.*/
+    $form_state['redirect'] = 'queen_success_page';
+}
+
+function queen_success() {
+    return $_SESSION['result'];
+}

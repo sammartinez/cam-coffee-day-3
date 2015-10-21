@@ -1,0 +1,5 @@
+name = Queen Attack
+description = Displays whether the players move will get taken down by the queen.
+package = My First Modules
+core = 7.x
+files[] = queen.module
